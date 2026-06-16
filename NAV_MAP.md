@@ -862,3 +862,5 @@ Migration to Side Panel is complete as of 2026-05-03. The primary UI is `sidepan
 - CSP constraints are the same as Popup: all scripts must be external files.
 - `panel-fill` panels (`#tab-prompts`, `#tab-schema`) must NOT have `style="margin:-24px"`. That negative margin causes flex height overflow and pushes `add-row` elements off-screen (Decision 38).
 - Workflow card active highlights and step-number border colors use shared CSS tokens in `sidepanel.html` (`--workflow-step-*`) so `Narrative Scan` and `AI Flows` stay visually aligned without duplicating raw rgba values.
+- Mono UI text should use the existing `--font-mono` token rather than hardcoded `DM Mono` declarations.
+- Prompt item status visuals share `--item-running-*`, `--item-done-border`, and `--item-error-border` tokens across `.prompt-row` and `.pi`.

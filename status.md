@@ -13,6 +13,10 @@
   - `sidepanel.html` 新增 workflow step 與 status semantic tokens，將 `Narrative Scan` / `AI Flows` 卡片 active highlight、step number 與 top status strip 的重複色值集中。
   - `src/sidepanel.js` 新增 `setWorkflowStatus(...)`，讓 `Narrative Scan` 與 `AI Flows` 的全域 status strip 共用 level normalization、icon mapping 與 class 切換邏輯。
   - 本輪只整理 shared UI grammar；未修改 runner、storage schema、`START_EXTRACT`、`START_DISTILL` 或 `activeDistillContext`。
+- **Side Panel CSS token cleanup 完成（2026-06-16, created: 06-16 20）：**
+  - `sidepanel.html` 內所有 hardcoded `DM Mono` font-family 已改用既有 `--font-mono` token。
+  - `.prompt-row` 與 `.pi` 的 running / done / error 邊框與 running glow 改為共用 `--item-*` status tokens。
+  - 本輪為 CSS-only cleanup；未修改 DOM、JS workflow、storage 或 message contract。
 - **AI Flows grammar 對齊 + 下載資料夾語意收斂完成（2026-05-21, created: 05-21 15）：**
   - `AI Flows` 已補齊 top global status strip、Task working draft、較一致的 CTA / tooltip / warning / review-save 語法，並將 Execute logs 收斂為低噪音但仍可見的兩行狀態視窗。
   - `AI Flows` 的 `Review` 已整理為更明確的工作台：`Save as:` + base name、`Try Capture`、結果 textarea、`Copy / Save .md / Save .html`。
