@@ -17,6 +17,11 @@
   - `sidepanel.html` 內所有 hardcoded `DM Mono` font-family 已改用既有 `--font-mono` token。
   - `.prompt-row` 與 `.pi` 的 running / done / error 邊框與 running glow 改為共用 `--item-*` status tokens。
   - 本輪為 CSS-only cleanup；未修改 DOM、JS workflow、storage 或 message contract。
+- **Design generation handoff 文件包完成（2026-06-16, created: 06-16 21）：**
+  - 新增 `design/DESIGN_GENERATION_SPEC.md`、`design/DESIGN_BRIEF.md`、`design/CSS_TOKEN_MAP.md`，作為 Google Stitch / Claude Design 等外部設計生成工具的規格輸入。
+  - 舊的根目錄 `DESIGN.md` 與 `css_claudedesign.md` 已移除，避免外部工具吃到過期的 Side Panel / workflow 描述。
+  - `.gitignore` 改為只忽略 `design/screenshots/*`，並保留 `design/screenshots/README.md`；設計規格 md 可進 Git，實際截圖仍預設不提交。
+  - 本輪只整理文件與 design handoff；未修改 UI、runtime、storage 或 message contract。
 - **AI Flows grammar 對齊 + 下載資料夾語意收斂完成（2026-05-21, created: 05-21 15）：**
   - `AI Flows` 已補齊 top global status strip、Task working draft、較一致的 CTA / tooltip / warning / review-save 語法，並將 Execute logs 收斂為低噪音但仍可見的兩行狀態視窗。
   - `AI Flows` 的 `Review` 已整理為更明確的工作台：`Save as:` + base name、`Try Capture`、結果 textarea、`Copy / Save .md / Save .html`。
@@ -71,7 +76,7 @@
 - **X 敘事擷取策略補強（2026-05-14）：**
   - Custom Flow Source block 對 x.com 內容新增較寬的 primary narrative / thread 擷取與 UI noise 過濾。
   - 目前方向偏向先保留較完整脈絡，再在後續 AI 整理步驟中去噪，而非一開始就過度裁切。
-- **全專案文件更新完成（2026-05-05）：** spec.md、README.md、NAV_MAP.md、schema.md、DESIGN.md、decisions.md。
+- **全專案文件更新完成（2026-05-05）：** spec.md、README.md、NAV_MAP.md、schema.md、DESIGN.md、decisions.md。（舊根目錄設計檔已於 2026-06-16 移除；新的外部設計生成規格集中於 `design/`。）
 - **Prompt / Schema 管理 UX 與 i18n 收尾完成（2026-05-17, created: 05-17 19）：**
   - `Prompt 庫 / Schema 庫` 對外命名更新為 `Prompt 管理 / 格式管理`，英文同步為 `Prompt Manager / Format Manager`。
   - Prompt 與 Schema 皆補齊 `取代匯入 / 合併匯入 / 匯出 JSON / 匯出 Markdown`；Markdown 匯出改為可跳出另存位置視窗。

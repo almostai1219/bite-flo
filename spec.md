@@ -133,7 +133,7 @@ It is not intended to be only a generic AI chat wrapper or pasted-text summarize
 ## Documentation Responsibilities
 
 - `README.md`: current project overview and usage.
-- `DESIGN.md`: visual and component design system.
+- `design/DESIGN_GENERATION_SPEC.md`: visual design-generation handoff entry point.
 - `NAV_MAP.md`: UI navigation, DOM, event, message, and storage map.
 - `schema.md`: storage and message contracts.
 - `decisions.md`: long-term design decisions.

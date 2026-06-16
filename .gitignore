@@ -48,6 +48,10 @@ drafts/
 exports/
 narrative-toolkit/
 
+# Design handoff screenshots may contain personal data.
+design/screenshots/*
+!design/screenshots/README.md
+
 # Claude local settings
 .claude/settings.local.json
 # Claude local workflows / prompts
