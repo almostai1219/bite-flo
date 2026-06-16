@@ -46,6 +46,30 @@ input, button, select, optgroup, textarea { font-family: inherit; font-size: inh
   --step-4:    #2ea6a6;
   --step-5:    #46b96b;
   --step-6:    #f59e0b;
+  --workflow-step-gloss: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+  --workflow-step-1-border: rgba(139,92,246,0.55);
+  --workflow-step-1-shadow: 0 0 0 1px rgba(139,92,246,0.10);
+  --workflow-step-2-border: rgba(99,102,241,0.55);
+  --workflow-step-2-shadow: 0 0 0 1px rgba(99,102,241,0.10);
+  --workflow-step-3-border: rgba(79,124,255,0.55);
+  --workflow-step-3-shadow: 0 0 0 1px rgba(79,124,255,0.10);
+  --workflow-step-4-border: rgba(46,166,166,0.55);
+  --workflow-step-4-shadow: 0 0 0 1px rgba(46,166,166,0.10);
+  --workflow-step-5-border: rgba(70,185,107,0.55);
+  --workflow-step-5-shadow: 0 0 0 1px rgba(70,185,107,0.10);
+  --workflow-step-6-border: rgba(245,158,11,0.55);
+  --status-idle-border: rgba(143,151,171,0.28);
+  --status-idle-bg: rgba(11,16,32,0.56);
+  --status-idle-text: var(--text2);
+  --status-waiting-border: rgba(243,197,106,0.38);
+  --status-waiting-bg: rgba(243,197,106,0.09);
+  --status-waiting-text: #f3d89b;
+  --status-success-border: rgba(70,185,107,0.34);
+  --status-success-bg: rgba(70,185,107,0.09);
+  --status-success-text: #9bd2aa;
+  --status-error-border: rgba(255,107,107,0.34);
+  --status-error-bg: rgba(255,107,107,0.08);
+  --status-error-text: #ffb1b1;
 
   --page-bg: var(--bg);
   --panel-bg: var(--bg2);
@@ -1922,12 +1946,12 @@ body.font-large .cf-source-textarea { font-size: 16px; }
 
 /* Active highlight during run-all */
 .cf-card.cf-active { border-color: var(--text2); }
-.cf-card[data-cf-card="source"].cf-active { border-color: rgba(139,92,246,0.55); box-shadow: 0 0 0 1px rgba(139,92,246,0.10); }
-.cf-card[data-cf-card="task"].cf-active { border-color: rgba(99,102,241,0.55); box-shadow: 0 0 0 1px rgba(99,102,241,0.10); }
-.cf-card[data-cf-card="format"].cf-active { border-color: rgba(79,124,255,0.55); box-shadow: 0 0 0 1px rgba(79,124,255,0.10); }
-.cf-card[data-cf-card="ai"].cf-active { border-color: rgba(46,166,166,0.55); box-shadow: 0 0 0 1px rgba(46,166,166,0.10); }
+.cf-card[data-cf-card="source"].cf-active { border-color: var(--workflow-step-1-border); box-shadow: var(--workflow-step-1-shadow); }
+.cf-card[data-cf-card="task"].cf-active { border-color: var(--workflow-step-2-border); box-shadow: var(--workflow-step-2-shadow); }
+.cf-card[data-cf-card="format"].cf-active { border-color: var(--workflow-step-3-border); box-shadow: var(--workflow-step-3-shadow); }
+.cf-card[data-cf-card="ai"].cf-active { border-color: var(--workflow-step-4-border); box-shadow: var(--workflow-step-4-shadow); }
 .cf-card[data-cf-card="run"].cf-active,
-.cf-card[data-cf-linked-card="run"].cf-active { border-color: rgba(70,185,107,0.55); box-shadow: 0 0 0 1px rgba(70,185,107,0.10); }
+.cf-card[data-cf-linked-card="run"].cf-active { border-color: var(--workflow-step-5-border); box-shadow: var(--workflow-step-5-shadow); }
 
 .cf-card {
   background: var(--card-bg);
@@ -1953,16 +1977,16 @@ body.font-large .cf-source-textarea { font-size: 16px; }
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
 .cf-card[data-cf-card="source"] .cf-card-num,
-.cf-card[data-etl-card="prompt"] .cf-card-num { background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)), var(--step-1); border-color: rgba(139,92,246,0.55); }
+.cf-card[data-etl-card="prompt"] .cf-card-num { background: var(--workflow-step-gloss), var(--step-1); border-color: var(--workflow-step-1-border); }
 .cf-card[data-cf-card="task"] .cf-card-num,
-.cf-card[data-etl-card="schema"] .cf-card-num { background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)), var(--step-2); border-color: rgba(99,102,241,0.55); }
+.cf-card[data-etl-card="schema"] .cf-card-num { background: var(--workflow-step-gloss), var(--step-2); border-color: var(--workflow-step-2-border); }
 .cf-card[data-cf-card="format"] .cf-card-num,
-.cf-card[data-etl-card="ai"] .cf-card-num { background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)), var(--step-3); border-color: rgba(79,124,255,0.55); }
+.cf-card[data-etl-card="ai"] .cf-card-num { background: var(--workflow-step-gloss), var(--step-3); border-color: var(--workflow-step-3-border); }
 .cf-card[data-cf-card="ai"] .cf-card-num,
-.cf-card[data-etl-card="run"] .cf-card-num { background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)), var(--step-4); border-color: rgba(46,166,166,0.55); }
+.cf-card[data-etl-card="run"] .cf-card-num { background: var(--workflow-step-gloss), var(--step-4); border-color: var(--workflow-step-4-border); }
 .cf-card[data-cf-card="run"] .cf-card-num,
-.cf-card[data-etl-card="save"] .cf-card-num { background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)), var(--step-5); border-color: rgba(70,185,107,0.55); }
-.cf-card[data-cf-linked-card="run"] .cf-card-num { background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)), var(--step-6); border-color: rgba(245,158,11,0.55); }
+.cf-card[data-etl-card="save"] .cf-card-num { background: var(--workflow-step-gloss), var(--step-5); border-color: var(--workflow-step-5-border); }
+.cf-card[data-cf-linked-card="run"] .cf-card-num { background: var(--workflow-step-gloss), var(--step-6); border-color: var(--workflow-step-6-border); }
 .cf-card-title {
   font-family: var(--font-ui); font-size: 14px;
   font-weight: 600;
@@ -2186,11 +2210,11 @@ body.font-large .cf-source-textarea { font-size: 16px; }
   background: var(--bg3);
 }
 .cf-card-num.done { border-color: var(--green); }
-.cf-card[data-etl-card="prompt"]:has(.cf-card-num.active) { border-color: rgba(139,92,246,0.55); box-shadow: 0 0 0 1px rgba(139,92,246,0.10); }
-.cf-card[data-etl-card="schema"]:has(.cf-card-num.active) { border-color: rgba(99,102,241,0.55); box-shadow: 0 0 0 1px rgba(99,102,241,0.10); }
-.cf-card[data-etl-card="ai"]:has(.cf-card-num.active) { border-color: rgba(79,124,255,0.55); box-shadow: 0 0 0 1px rgba(79,124,255,0.10); }
-.cf-card[data-etl-card="run"]:has(.cf-card-num.active) { border-color: rgba(46,166,166,0.55); box-shadow: 0 0 0 1px rgba(46,166,166,0.10); }
-.cf-card[data-etl-card="save"]:has(.cf-card-num.active) { border-color: rgba(70,185,107,0.55); box-shadow: 0 0 0 1px rgba(70,185,107,0.10); }
+.cf-card[data-etl-card="prompt"]:has(.cf-card-num.active) { border-color: var(--workflow-step-1-border); box-shadow: var(--workflow-step-1-shadow); }
+.cf-card[data-etl-card="schema"]:has(.cf-card-num.active) { border-color: var(--workflow-step-2-border); box-shadow: var(--workflow-step-2-shadow); }
+.cf-card[data-etl-card="ai"]:has(.cf-card-num.active) { border-color: var(--workflow-step-3-border); box-shadow: var(--workflow-step-3-shadow); }
+.cf-card[data-etl-card="run"]:has(.cf-card-num.active) { border-color: var(--workflow-step-4-border); box-shadow: var(--workflow-step-4-shadow); }
+.cf-card[data-etl-card="save"]:has(.cf-card-num.active) { border-color: var(--workflow-step-5-border); box-shadow: var(--workflow-step-5-shadow); }
 
 .extract-global-status {
   display: flex;
@@ -2198,33 +2222,33 @@ body.font-large .cf-source-textarea { font-size: 16px; }
   gap: 10px;
   margin: 0 0 14px;
   padding: 10px 12px;
-  border: 1px solid rgba(143,151,171,0.28);
+  border: 1px solid var(--status-idle-border);
   border-radius: 12px;
-  background: rgba(11,16,32,0.56);
-  color: var(--text2);
+  background: var(--status-idle-bg);
+  color: var(--status-idle-text);
 }
 .extract-global-status.idle {
-  border-color: rgba(143,151,171,0.28);
-  background: rgba(11,16,32,0.56);
-  color: var(--text2);
+  border-color: var(--status-idle-border);
+  background: var(--status-idle-bg);
+  color: var(--status-idle-text);
 }
 .extract-global-status.waiting,
 .extract-global-status.running {
-  border-color: rgba(243,197,106,0.38);
-  background: rgba(243,197,106,0.09);
-  color: #f3d89b;
+  border-color: var(--status-waiting-border);
+  background: var(--status-waiting-bg);
+  color: var(--status-waiting-text);
 }
 .extract-global-status.success,
 .extract-global-status.done {
-  border-color: rgba(70,185,107,0.34);
-  background: rgba(70,185,107,0.09);
-  color: #9bd2aa;
+  border-color: var(--status-success-border);
+  background: var(--status-success-bg);
+  color: var(--status-success-text);
 }
 .extract-global-status.error,
 .extract-global-status.stopped {
-  border-color: rgba(255,107,107,0.34);
-  background: rgba(255,107,107,0.08);
-  color: #ffb1b1;
+  border-color: var(--status-error-border);
+  background: var(--status-error-bg);
+  color: var(--status-error-text);
 }
 .extract-global-status-icon {
   display: inline-flex;

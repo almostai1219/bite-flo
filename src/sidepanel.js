@@ -559,6 +559,44 @@ function refreshI18nUI() {
 
 window.t = t;
 
+const WORKFLOW_STATUS_LEVELS = ['idle', 'waiting', 'running', 'success', 'done', 'error', 'stopped'];
+
+function normalizeWorkflowStatusLevel(level) {
+  if (level === 'info') return 'idle';
+  if (level === 'warn') return 'waiting';
+  return WORKFLOW_STATUS_LEVELS.includes(level) ? level : 'idle';
+}
+
+function getWorkflowStatusIcon(level) {
+  switch (level) {
+    case 'waiting':
+    case 'running':
+      return '◔';
+    case 'success':
+    case 'done':
+      return '✓';
+    case 'error':
+      return '!';
+    case 'stopped':
+      return '×';
+    default:
+      return '○';
+  }
+}
+
+function setWorkflowStatus({ stripId, textId, iconId, text, level = 'idle' }) {
+  const strip = document.getElementById(stripId);
+  const textEl = document.getElementById(textId);
+  const iconEl = document.getElementById(iconId);
+  if (!strip || !textEl || !iconEl) return;
+
+  const nextLevel = normalizeWorkflowStatusLevel(level);
+  strip.classList.remove(...WORKFLOW_STATUS_LEVELS);
+  textEl.textContent = text;
+  iconEl.textContent = getWorkflowStatusIcon(nextLevel);
+  strip.classList.add(nextLevel);
+}
+
 function getExtractAITargetLabel() {
   if (extractAI !== 'grok') return extractAI.toUpperCase();
   return extractGrokMode === 'inline'
@@ -1433,42 +1471,13 @@ const CustomFlowController = {
   },
 
   _setGlobalStatus(text, level = 'info') {
-    const strip = $('cfFlowStatus');
-    const textEl = $('cfFlowStatusText');
-    const iconEl = $('cfFlowStatusIcon');
-    if (!strip || !textEl || !iconEl) return;
-
-    strip.classList.remove('idle', 'waiting', 'running', 'success', 'done', 'error', 'stopped');
-
-    let nextIcon = '○';
-    let nextLevel = level;
-    if (level === 'info') nextLevel = 'idle';
-    if (level === 'warn') nextLevel = 'waiting';
-
-    switch (nextLevel) {
-      case 'waiting':
-      case 'running':
-        nextIcon = '◔';
-        break;
-      case 'success':
-      case 'done':
-        nextIcon = '✓';
-        break;
-      case 'error':
-        nextIcon = '!';
-        break;
-      case 'stopped':
-        nextIcon = '×';
-        break;
-      default:
-        nextIcon = '○';
-        nextLevel = 'idle';
-        break;
-    }
-
-    textEl.textContent = text;
-    iconEl.textContent = nextIcon;
-    strip.classList.add(nextLevel);
+    setWorkflowStatus({
+      stripId: 'cfFlowStatus',
+      textId: 'cfFlowStatusText',
+      iconId: 'cfFlowStatusIcon',
+      text,
+      level,
+    });
   },
 
   _log(text, level = 'info') {
@@ -3235,43 +3244,13 @@ function getExtractPromptTotal() {
 }
 
 function setNarrativeScanGlobalStatus(text, level = 'idle') {
-  const progTxt = $('progTxt');
-  const statusStrip = $('extractGlobalStatus');
-  const progIcon = $('progIcon');
-  if (!progTxt || !statusStrip || !progIcon) return;
-
-  statusStrip.classList.remove('idle', 'waiting', 'running', 'success', 'done', 'error', 'stopped');
-
-  let nextIcon = '○';
-  let nextLevel = level;
-
-  if (level === 'info') nextLevel = 'idle';
-  if (level === 'warn') nextLevel = 'waiting';
-
-  switch (nextLevel) {
-    case 'waiting':
-    case 'running':
-      nextIcon = '◔';
-      break;
-    case 'success':
-    case 'done':
-      nextIcon = '✓';
-      break;
-    case 'error':
-      nextIcon = '!';
-      break;
-    case 'stopped':
-      nextIcon = '×';
-      break;
-    default:
-      nextIcon = '○';
-      nextLevel = 'idle';
-      break;
-  }
-
-  progTxt.textContent = text;
-  progIcon.textContent = nextIcon;
-  statusStrip.classList.add(nextLevel);
+  setWorkflowStatus({
+    stripId: 'extractGlobalStatus',
+    textId: 'progTxt',
+    iconId: 'progIcon',
+    text,
+    level,
+  });
 }
 
 function setExtractRunState(state, opts = {}) {

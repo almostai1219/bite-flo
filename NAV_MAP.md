@@ -98,6 +98,8 @@ Top-of-tab status:
 - This strip is the tab-level workflow status for `Narrative Scan`
 - It reuses the same ETL run-state vocabulary that previously lived inside Card 02
 - Current intent: show `idle / waiting / running / success / error / stopped` for the whole Narrative Scan workflow, not just the local review card
+- `setNarrativeScanGlobalStatus(...)` delegates to the shared `setWorkflowStatus(...)` helper in `src/sidepanel.js`
+- Status strip colors are controlled by semantic CSS tokens in `sidepanel.html` (`--status-idle-*`, `--status-waiting-*`, `--status-success-*`, `--status-error-*`)
 
 ### ETL Card Rendering
 
@@ -655,6 +657,7 @@ Top-of-tab status:
 
 - `AI Flows` now also exposes a top global workflow status strip above the block stack.
 - `cfGlobalStatus` remains the underlying status node / state source, but the primary user-facing status grammar is no longer confined to the Execute card.
+- `CustomFlowController._setGlobalStatus(...)` delegates to the shared `setWorkflowStatus(...)` helper in `src/sidepanel.js`.
 
 Review DOM IDs:
 - `cfResultName`
@@ -858,3 +861,4 @@ Migration to Side Panel is complete as of 2026-05-03. The primary UI is `sidepan
 - `src/sidepanel.js` is the main UI script, loaded by both `sidepanel.html` and `popup.html`. Renamed from `src/popup.js` on 2026-05-04 (Decision 37).
 - CSP constraints are the same as Popup: all scripts must be external files.
 - `panel-fill` panels (`#tab-prompts`, `#tab-schema`) must NOT have `style="margin:-24px"`. That negative margin causes flex height overflow and pushes `add-row` elements off-screen (Decision 38).
+- Workflow card active highlights and step-number border colors use shared CSS tokens in `sidepanel.html` (`--workflow-step-*`) so `Narrative Scan` and `AI Flows` stay visually aligned without duplicating raw rgba values.
