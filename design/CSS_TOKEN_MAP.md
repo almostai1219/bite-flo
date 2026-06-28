@@ -69,24 +69,27 @@ Hardcode risk:
 
 Hardcode risk:
 - Hover shadows still appear directly, e.g. section/card/button hover shadows.
-- `--shadow-soft` appears referenced in CSS but is not defined in the current token set. This should be reviewed before a visual redesign.
+
+Note: `--shadow-soft` was undefined but is now defined as `0 2px 8px rgba(0,0,0,0.18)` (resolved 2026-06-28).
 
 ## Core Color Tokens
 
 ### Base / `nt-dark`
 
+Updated 2026-06-28: accent 換青綠色，背景換中性暖黑。
+
 | Token | Value |
 |---|---|
-| `--bg` | `#0b1020` |
-| `--bg2` | `#11182a` |
-| `--bg3` | `#171f33` |
-| `--line` | `rgba(255,255,255,0.08)` |
-| `--line2` | `rgba(255,255,255,0.14)` |
-| `--text` | `#f3f6ff` |
-| `--text2` | `#c7cede` |
-| `--text3` | `#8f97ab` |
-| `--accent` | `#8b5cf6` |
-| `--accent-bg` | `rgba(139,92,246,0.12)` |
+| `--bg` | `#111111` |
+| `--bg2` | `#1a1a1c` |
+| `--bg3` | `#222228` |
+| `--line` | `rgba(255,255,255,0.07)` |
+| `--line2` | `rgba(255,255,255,0.13)` |
+| `--text` | `#f0ede8` |
+| `--text2` | `#a8a49e` |
+| `--text3` | `#686460` |
+| `--accent` | `#2ccfb4` |
+| `--accent-bg` | `rgba(44,207,180,0.10)` |
 | `--green` | `#46b96b` |
 | `--red` | `#ff6b6b` |
 | `--amber` | `#f59e0b` |

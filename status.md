@@ -1,6 +1,7 @@
 # Status Update
 
 ## Current Focus
+- Visual refresh 首輪已落地：accent 換青綠色、背景換中性暖黑、active tab 改 underline、status strip 改左側邊線、底部狀態列已加入。下一步可截圖確認視覺效果，並選擇是否繼續調整 light theme 或組件細節。
 - `Narrative Scan` 已收斂為 4 張卡的兩階段 workflow：`Extract Setup`、`Extract Review`、`Output Setup`、`Capture & Save`；目前重點轉向 UI polish 與語意一致性，而非再擴張卡片數量。
 - 分享版最小雙語切換已完成：Topnav 加入 `中文 / English`，偏好儲存於 `uiLanguage`。
 - Side Panel 舊 Distill UI shell 已移除；目前只保留 `AI Flows`、`Narrative Scan`、`Prompt Manager`、`Format Manager` 與 `Settings`。
@@ -9,6 +10,16 @@
 - `Narrative Scan` 頂部已改為全域 workflow status strip；第二階段現已改為 `START_DISTILL` send-only + 手動回收，不再自動回填或自動存檔。
 
 ## Progress
+- **Visual refresh 首輪實作完成（2026-06-28, created: 06-28 22）：**
+  - `sidepanel.html` 主 accent 從紫色（`#8b5cf6`）換為青綠色（`#2ccfb4`）；背景從藍調深色（`#0b1020`）換為中性暖黑（`#111111`）；文字白從偏藍白換為暖白（`#f0ede8`）。
+  - Step badge / primary button / AI pill / active tab 的 accent 顏色統一為青綠色系。
+  - Active tab 改為底部 2px accent underline，取代原本的深色填充 pill。
+  - Global status strip 改為左側 3px 彩色邊線樣式，取代原本的圓角 pill 框。
+  - Optional textarea placeholder 改為 `--text3` 灰色，消除橘黃警示語氣。
+  - `cf-delay-*` 控件改為 `--text3` 低對比呈現，降低介面噪音。
+  - 補齊缺少的 `--shadow-soft` token 定義。
+  - 新增 `.app-statusbar` 底部靜態狀態列（`All systems operational`）。
+  - 本輪為 CSS-only + 少量 HTML 新增；未動 JS workflow、storage schema、message contract 或 block files。
 - **Workflow status / CSS token 抽取完成（2026-06-16, created: 06-16 18）：**
   - `sidepanel.html` 新增 workflow step 與 status semantic tokens，將 `Narrative Scan` / `AI Flows` 卡片 active highlight、step number 與 top status strip 的重複色值集中。
   - `src/sidepanel.js` 新增 `setWorkflowStatus(...)`，讓 `Narrative Scan` 與 `AI Flows` 的全域 status strip 共用 level normalization、icon mapping 與 class 切換邏輯。

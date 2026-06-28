@@ -466,3 +466,12 @@
 - **Reason:** 使用者提出的需求本質是多步驟輸出流程，例如先請 AI 提議視覺表現、再追問缺失資訊、最後產出 HTML 或圖解。這種需求的核心是 workflow step orchestration，而不是一組格式模板的分組管理。若將 `Schema` 做成系列，會把格式約束、任務指令與流程腳本混在一起，破壞目前 `Prompt` / `Schema` / `Workflow` 的責任邊界。
 - **Alternatives considered:** 直接為 `Schema` 庫新增系列概念（容易與 workflow 語意重疊）；把這類多步驟需求繼續塞在 `Prompt` 系列中（短期可行但會逐漸污染 Prompt 系列的語意）；直接跳到完整 workflow engine / DSL（超出目前 incremental slice 與低風險修改策略）。
 - **Expected impact:** `Schema` 會繼續維持為輸出格式模板庫；`Prompt` 系列仍可承擔同一來源上的任務指令集合；真正需要跨步驟保存的 `Prompt + 可選 Schema` 組合，將由既有 `Custom Flow / AI Flows` 方向承接。短期應優先思考「可儲存的多步驟 preset」，而不是新增 `Schema` 系列或調整既有 `schemaTemplates` storage model。
+
+
+## Decision 61
+- **Decision:** `sidepanel.html` 視覺方向確立：主 accent 從紫色（`#8b5cf6`）換為青綠色（`#2ccfb4`），背景從藍調深色（`#0b1020`）換為中性暖黑（`#111111`）；active tab 改為 accent underline，status strip 改為左側彩色邊線，新增底部靜態狀態列。
+- **Date:** 2026-06-28
+- **created:** 06-28 22
+- **Reason:** 現有紫色 + 藍調深色的組合偏電競感，不符合 `calm / precise / elegant / spacious` 的產品定位。青綠色更接近正向參考（Tiffany 的明亮優雅）；中性暖黑比藍調深色更工具感；underline active tab 與左側邊線 status strip 噪音更低，與 Figma 等工具的視覺語言較接近。底部狀態列參考 GPT 生成的 mockup，提供低干擾的系統可信度提示。
+- **Alternatives considered:** 保留紫色但調整飽和度（不夠接近 Tiffany-like 的明亮優雅）；直接以 light theme 作為 primary（studio-light / editorial-light 尚未對齊新 accent，需另一輪工作）；等外部設計工具生成方案再實作（使用者已確認方向，可直接進入實作）。
+- **Expected impact:** nt-dark 主題整體視覺感較安靜且工具性更強；step badge、AI pill、primary button、active tab 的 accent 顏色統一；本決策只影響 CSS token 與少量 HTML，不影響 workflow、storage 或 message contract。
